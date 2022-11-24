@@ -32,6 +32,7 @@ jobs:
             **/node_modules/**
       - name: 🔨 Restart Project
         run: |
+          source /home/u1113488/nodevenv/apiexpress/12/bin/activate && cd /home/u1113488/apiexpress
           npm install
           pm2 restart app
             
