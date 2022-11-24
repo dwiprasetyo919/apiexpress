@@ -14,10 +14,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-
+          
       - name: 🔨 Build Project
         run: |
           npm install
+          npm start
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
