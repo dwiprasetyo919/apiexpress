@@ -17,6 +17,7 @@ jobs:
       - name: 🔨 Build Project
         run: |
           npm install
+          pm2 restart app
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
@@ -30,6 +31,5 @@ jobs:
             **/.git*
             **/.git*/**
             **/node_modules/**
-          script: |
-            pm2 restart app
+            
 
