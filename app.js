@@ -4,7 +4,7 @@ var app = express();
 // Routes
   
 app.get('/', function(req, res) {
-res.send('Hallo!');
+res.send('Hallo Bro!');
  });
   
 // Listen
