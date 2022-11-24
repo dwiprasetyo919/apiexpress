@@ -25,7 +25,7 @@ jobs:
           password: ${{ secrets.DEPLOY_PASS }}
           protocol: ftps
           port: 21
-          server-dir: apiexpress
+          server-dir: /apiexpress/
           exclude: |
             **/.git*
             **/.git*/**
