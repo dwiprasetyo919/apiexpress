@@ -17,6 +17,7 @@ jobs:
       - name: 🔨 Build Project
         run: |
           npm install
+          pm2 restart apibromo
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
@@ -30,10 +31,5 @@ jobs:
             **/.git*
             **/.git*/**
             **/node_modules/**
-      - name: 🔨 Restart Project
-        run: |
-          source /nodevenv/apiexpress/12/bin/activate && cd apiexpress
-          npm install
-          pm2 restart app
             
 
