@@ -1,34 +1,26 @@
+name: Node.js CI
+
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [main]
-name: 🚀 Deploy website on push
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  build:
+
     runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16]
+
     steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v3
-      - name: Use Node.js 16
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
-      - name: 🔨 Build Project
-        run: |
-          npm install
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
-        with:
-          server: ${{ secrets.DEPLOY_SERVER }}
-          username: ${{ secrets.DEPLOY_USER }}
-          password: ${{ secrets.DEPLOY_PASS }}
-          protocol: ftps
-          port: 21
-          server-dir: /apiexpress/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            
-
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
