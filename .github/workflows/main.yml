@@ -9,15 +9,14 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: 🚚 Get latest code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Use Node.js 16
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
       - name: 🔨 Build Project
         run: |
           npm install
-          pm2 restart apibromo
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
@@ -31,5 +30,3 @@ jobs:
             **/.git*
             **/.git*/**
             **/node_modules/**
-            
-
